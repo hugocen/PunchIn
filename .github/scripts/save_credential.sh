@@ -1,0 +1,1 @@
+echo $GCP_AUTHORIZATION > authorization.json

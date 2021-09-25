@@ -54,7 +54,7 @@ def weekday_from_date(current_date):
 
 def fill_worksheet(worksheet, year, month):
     index = RECORD_START_INDEX
-    for day in tqdm(range(1, calendar.monthlen(year, month) + 1)):
+    for day in tqdm(range(1, calendar.monthrange(year, month)[1] + 1)):
         current_date = date(year=year, month=month, day=day)
         if current_date.weekday() != 5 and current_date.weekday() != 6:
             worksheet.update(
