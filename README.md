@@ -19,7 +19,7 @@ And you also need a GCP account, a service account, and service account's creden
 ### Usage
 
 ```
-python history_make_up.py -c authorization.json -i <GOOGLE_SPREADSHEET_ID> -y 2021 -s 4 -e 9
+python history_make_up.py --credential authorization.json --sheetid <GOOGLE_SPREADSHEET_ID> --year 2021 --startmonth 4 --endmonth 9
 ```
 
 ### Notices
