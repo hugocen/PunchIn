@@ -1,0 +1,29 @@
+name: Auto Punch In/Out Last Month
+
+on:
+  schedule:
+    - cron: "0 1 1 * *"
+
+jobs:
+  punching:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Decrypt credential
+        run: ./.github/scripts/save_credential.sh
+        env:
+          GCP_AUTHORIZATION: ${{ secrets.GCP_AUTHORIZATION }}
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install python requirements
+        run: pip install -r requirements.txt
+
+      - name: Punching last month
+        run: |
+          LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
+          YEAR=`date -d "$(date +%Y-%m-1) -1 month" +%-Y`
+          python3 history_make_up.py -c authorization.json -i ${{ secrets.SPREADSHEET_ID }} -y $YEAR -s $LAST_MONTH -e $LAST_MONTH
