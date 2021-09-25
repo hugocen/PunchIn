@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Decrypt credential
-        run: ./.github/scripts/save_credential.sh
+        run: bash .github/scripts/save_credential.sh
         env:
           GCP_AUTHORIZATION: ${{ secrets.GCP_AUTHORIZATION }}
 
@@ -29,3 +29,8 @@ jobs:
           LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
           YEAR=`date -d "$(date +%Y-%m-1) -1 month" +%-Y`
           python3 history_make_up.py -c authorization.json -i ${{ secrets.SPREADSHEET_ID }} -y $YEAR -s $LAST_MONTH -e $LAST_MONTH
+      
+      uses: snow-actions/line-notify@v1.0.0
+        with:
+          access_token: ${{ secrets.LINE_TOKEN }}
+          message: Last month punch in done!
