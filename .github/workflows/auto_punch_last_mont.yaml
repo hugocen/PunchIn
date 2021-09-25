@@ -3,6 +3,8 @@ name: Auto Punch In/Out Last Month
 on:
   schedule:
     - cron: "0 1 1 * *"
+  
+  workflow_dispatch
 
 jobs:
   punching:
