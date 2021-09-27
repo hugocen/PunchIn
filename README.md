@@ -27,4 +27,6 @@ Using sleeps to avoid Google Sheets API quota limit for 100 requests per 100 sec
 
 ## Next Steps
 
-- [ ] Use GitHub Actions to automate daily punch in/out.
+- [ ] Create new worksheet on first day of the month.
+- [ ] Punch in every day morning.
+- [ ] Punch out every day evening.
